@@ -87,7 +87,7 @@ function App() {
                     <EachPostLi>
                       <div>
                         <FontAwesomeIcon icon={faLocationPin} />
-                        <PostLink>제목제목제목</PostLink>
+                        <PostLink>제목입니다.</PostLink>
                       </div>
                       <PostRepl>[10]</PostRepl>
                     </EachPostLi>
