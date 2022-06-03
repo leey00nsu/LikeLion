@@ -1,11 +1,17 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 //yarn add styled-reset
-import reset from 'styled-reset';
+import reset from "styled-reset";
 
-export const lightTheme = {};
+export const lightTheme = {
+  fontColor: "black",
+  bgColor: "white",
+};
 
-export const darkTheme = {};
+export const darkTheme = {
+  fontColor: "white",
+  bgColor: "black",
+};
 
 export const GlobalStyles = createGlobalStyle`
     ${reset}
