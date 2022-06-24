@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>글자수 세기</title>
+  </head>
+  <body>
+    <h1>글자수 세기</h1>
+    <textarea onkeyup="counter()" rows="10" id="textbox"></textarea>
+    <span id="count">(0)</span>
+    <script>
+      function counter() {
+        var content = document.getElementById("textbox").value;
+        document.getElementById("count").innerHTML = "(" + content.length + ")";
+      }
+      counter();
+    </script>
+  </body>
+</html>
