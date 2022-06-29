@@ -156,4 +156,8 @@ export const FooterSmall = styled.span`
   margin: 5px;
   font-size: 5px;
 `;
+
+export const CursorDiv = styled.div`
+  cursor: pointer;
+`;
 // export default MediaDiv;
