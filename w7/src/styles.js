@@ -4,13 +4,13 @@ import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 
 export const lightTheme = {
-  fontColor: "black",
+  fontColor: "#2c2c2c",
   bgColor: "white",
 };
 
 export const darkTheme = {
   fontColor: "white",
-  bgColor: "black",
+  bgColor: "#2c2c2c",
 };
 
 export const GlobalStyles = createGlobalStyle`

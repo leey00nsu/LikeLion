@@ -1,115 +1,52 @@
-import {
-  EachPostLi,
-  Footer,
-  FooterBig,
-  FooterSmall,
-  Header,
-  LoadingDiv,
-  LoadingImg,
-  Main,
-  MediaDiv,
-  PagenumberDiv,
-  PagingSection,
-  PostLink,
-  PostListDiv,
-  PostRepl,
-  PostSection,
-  PostTitle,
-  PostTitleDiv,
-  SlogunBig,
-  SlogunSection,
-  SlogunSmall,
-  SubHeaderDiv,
-  TitleBig,
-  TitleLogoDiv,
-  TitleSmall,
-} from "./styledComponent";
+import { Main, MediaDiv } from "./styledComponent";
 
 // yarn add @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-brands-svg-icons
-import {
-  faSun,
-  faMoon,
-  faArrowsRotate,
-  faPenToSquare,
-  faLocationPin,
-  faArrowLeft,
-  faArrowRight,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faReact } from "@fortawesome/free-brands-svg-icons";
+
 import { GlobalStyles, darkTheme, lightTheme } from "./styles";
 import { ThemeProvider } from "styled-components";
-import loadingIcon from "./loading.svg";
+
+import { useState } from "react";
+import Header from "./Header";
+import Slogun from "./Slogun";
+import ShowPostSection from "./ShowPostSection";
+import ShowPagingSection from "./ShowPagingSection";
+import Footer from "./Footer";
 
 function App() {
-  const darkMode = false;
-  const loading = false;
-  const isPost = true;
+  const initialPostList = [
+    { id: 1, title: "제목", replCount: 1 },
+    { id: 2, title: "제목2", replCount: 15 },
+    { id: 3, title: "제목3", replCount: 8 },
+  ];
+  const [darkMode, setDarkMode] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [isPost, setIsPost] = useState(false);
+
+  const [postList, setPostList] = useState(initialPostList);
+  const addPost = () => {
+    setPostList((postList) => [
+      ...postList,
+      { id: 4, title: "제목4", replCount: 21 },
+    ]);
+  };
 
   return (
     <>
       <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
         <GlobalStyles />
         <MediaDiv>
-          <Header>
-            <TitleLogoDiv>
-              <TitleBig>멋사</TitleBig>
-              <TitleSmall>익명게시판</TitleSmall>
-            </TitleLogoDiv>
-            <SubHeaderDiv>
-              {darkMode ? (
-                <FontAwesomeIcon icon={faMoon} />
-              ) : (
-                <FontAwesomeIcon icon={faSun} />
-              )}
-            </SubHeaderDiv>
-          </Header>
+          <Header darkMode={darkMode} setDarkMode={setDarkMode} />
           <Main>
-            <SlogunSection>
-              <SlogunBig>Hack Your LIFE</SlogunBig>
-              <SlogunSmall>내 아이디어를 내 손으로 실현한다.</SlogunSmall>
-            </SlogunSection>
-            <PostSection>
-              <PostTitleDiv>
-                <FontAwesomeIcon icon={faArrowsRotate} />
-                <PostTitle>익명게시판</PostTitle>
-                <FontAwesomeIcon icon={faPenToSquare} />
-              </PostTitleDiv>
-              <PostListDiv>
-                {loading ? (
-                  <LoadingDiv>
-                    <LoadingImg src={loadingIcon} />
-                  </LoadingDiv>
-                ) : isPost ? (
-                  <LoadingDiv>아직 기록된 글이 없습니다.</LoadingDiv>
-                ) : (
-                  <ul>
-                    <EachPostLi>
-                      <div>
-                        <FontAwesomeIcon icon={faLocationPin} />
-                        <PostLink>제목입니다.</PostLink>
-                      </div>
-                      <PostRepl>[10]</PostRepl>
-                    </EachPostLi>
-                  </ul>
-                )}
-              </PostListDiv>
-            </PostSection>
-            <PagingSection>
-              <PagenumberDiv>
-                <FontAwesomeIcon icon={faArrowLeft} />
-              </PagenumberDiv>
-              <PagenumberDiv>2</PagenumberDiv>
-              <PagenumberDiv>
-                <FontAwesomeIcon icon={faArrowRight} />
-              </PagenumberDiv>
-            </PagingSection>
+            <Slogun />
+            <ShowPostSection
+              isPost={isPost}
+              loading={loading}
+              postList={postList}
+              addPost={addPost}
+            />
+            <ShowPagingSection />
           </Main>
-          <Footer>
-            <FontAwesomeIcon icon={faReact} />
-            <FooterBig>for react Study</FooterBig>
-            <FooterSmall>2022 by Yoonsu</FooterSmall>
-          </Footer>
+          <Footer />
         </MediaDiv>
       </ThemeProvider>
     </>
